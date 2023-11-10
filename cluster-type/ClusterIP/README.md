@@ -9,7 +9,7 @@ kubectl apply -f my-cip-service.yaml
 
 kubectl get service my-cip-service --output yaml
 kubectl get pods
-kubectl exec -it my-deployment-7866d98dbb-gn98l -- sh
+kubectl exec -it my-deployment-50000-8876fb655-jc8mn -- sh
 
 ##
 In your shell, install curl:
