@@ -1,4 +1,10 @@
 # gke
+export PROJECT_ID=project-id
+
+# Set the WORKING_DIR environment variable
+WORKING_DIR=$(pwd)
+
+kubectl get pods --watch
 
 ## Note --------------------------
 # รายการ การ access เข้า gke
