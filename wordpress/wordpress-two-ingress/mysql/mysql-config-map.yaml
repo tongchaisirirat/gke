@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-preload-data-config
+  labels:
+    name: mysql-data-store
+    app: mysql-gke-dev
+  namespace: dev
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS wordpress;
+    USE wordpress;

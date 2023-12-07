@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config-prod
+  namespace: prod
+data:
+  MYSQL_ROOT_PASSWORD: mysql-password-prod
+  MYSQL_DATABASE: wordpress-database-prod
+  MYSQL_USER: wordpress-user-prod
+  MYSQL_PASSWORD: database-password-prod

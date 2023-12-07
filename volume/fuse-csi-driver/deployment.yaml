@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cs-fuse-demo-app
+  name: cs-fuse-demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cs-fuse-demo-app
+  template:
+    metadata:
+      labels:
+        app: cs-fuse-demo-app
+      annotations:
+        gke-gcsfuse/volumes: "true" #Required
+        #Optional resource configuration for the sidecar container. Allocate more CPU to the sidecar container if your workloads need higher throughput.
+        gke-gcsfuse/cpu-limit: 500m
+        gke-gcsfuse/memory-limit: 100Mi
+        gke-gcsfuse/ephemeral-storage-limit: 5Gi   
+    spec:
+      serviceAccountName: cs-fuse-demo-app
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 2002
+        fsGroup: 3003
+      volumes:
+      - name: gcs-volume
+        persistentVolumeClaim:
+          claimName: cs-fuse-pvc
+      containers:
+      - image: busybox
+        name: busybox
+        command: ["sleep"]
+        args: ["infinity"]
+        volumeMounts:
+        - name: gcs-volume
+          mountPath: /data
+          readOnly: false

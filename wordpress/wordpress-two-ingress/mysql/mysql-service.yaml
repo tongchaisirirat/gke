@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    name: mysql-service
+    app: mysql-gke-dev
+  namespace: dev
+spec:
+  type: ClusterIP
+  selector:
+    name: mysql-pod
+    app: mysql-gke-dev
+  ports:
+    - port: 3306
+      targetPort: 3306
